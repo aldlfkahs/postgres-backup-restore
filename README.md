@@ -1,6 +1,6 @@
 # Postgres Backup & Restore
 
-This shell script is for backup and restore postgres in kubernetes environment. 'tar' binary should be included in containers.
+This shell script is for migrating(backup and restore) postgres data in kubernetes environment. 'tar' binary should be included in containers.
 
 ## Step 0. Set up backup.config
 - Purpose : `Set up configuration file for shell script`
