@@ -1,4 +1,4 @@
-# Postgres Backup & Restore
+# Postgres  Migration
 
 This shell script is for migrating(backup and restore) postgres data in kubernetes environment. 'tar' binary should be included in containers.
 
