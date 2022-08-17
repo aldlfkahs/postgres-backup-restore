@@ -25,8 +25,8 @@ restore(){
     cli="kubectl get pod"
 
     # 1. Get pod by label
-    cli="$cli -n $backup_ns"
-    for label in "${backup_label[@]}"
+    cli="$cli -n $restore_ns"
+    for label in "${restore_label[@]}"
     do
         cli="$cli -l $label"
     done
@@ -34,10 +34,10 @@ restore(){
     echo "Pod name = $pod_name"
 
     # 2. Copy backup.sql file to a container
-    kubectl cp -n $backup_ns $backup_file_directory/backup.sql $pod_name:/var/lib/postgresql/backup.sql
+    kubectl cp -n $restore_ns $backup_file_directory/backup.sql $pod_name:/var/lib/postgresql/backup.sql
 
     # 3. Execute restore
-    kubectl exec -n $backup_ns $pod_name -- bash -c "cd /var/lib/postgresql/ && psql -f backup.sql -U postgres"
+    kubectl exec -n $restore_ns $pod_name -- bash -c "cd /var/lib/postgresql/ && psql -f backup.sql -U postgres"
 }
 
 if [ -z $1 ]
